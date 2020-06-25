@@ -6,8 +6,7 @@ import com.management.order.entity.Order;
 
 public interface OrderService {
 
-	Order getOrderDetails();
-
-	ResponseEntity<String> createOrderDetails();
+	ResponseEntity<Order> getOrderDetails(Integer orderId);
+	ResponseEntity<String> createOrderDetails(Order order);
 
 }
