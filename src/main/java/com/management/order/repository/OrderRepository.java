@@ -1,5 +1,9 @@
 package com.management.order.repository;
 
-public interface OrderRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.management.order.entity.Order;
+
+public interface OrderRepository extends JpaRepository<Order, Integer>{
 
 }

@@ -1,36 +1,39 @@
 package com.management.order.entity;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Proxy;
 
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name="orders")@Proxy(lazy = false)
 public class Order {
 	
+	@Id
+	@GeneratedValue
+	@Column(name="order_id")
+	private Integer orderId;
+	@Column(name="customer_name")
 	private String customerName;
-	private Date OrderDate;
+	@Column(name="order_date")
+	private Date orderDate;
+	@Column(name="shipping_address")
 	private String shippingAddress;
-	private BigDecimal totalInDollars;
+	@Column(name="total")
+	private Double totalInDollars;
+	@OneToMany
 	private List<OrderItems> orderItems;
 	
-	@Override
-	public String toString() {
-		return "Order [customerName=" + customerName + ", OrderDate=" + OrderDate + ", shippingAddress="
-				+ shippingAddress + ", totalInDollars=" + totalInDollars + ", orderItems=" + orderItems + "]";
-	}
-
-	public Order() {
-		this.customerName = "Ishani";
-		OrderDate = new Date();
-		this.shippingAddress = "Hyderabad";
-		this.totalInDollars = new BigDecimal(2000000.0);
-	}
-
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -40,11 +43,11 @@ public class Order {
 	}
 
 	public Date getOrderDate() {
-		return OrderDate;
+		return orderDate;
 	}
 
 	public void setOrderDate(Date orderDate) {
-		OrderDate = orderDate;
+		this.orderDate = orderDate;
 	}
 
 	public String getShippingAddress() {
@@ -55,21 +58,29 @@ public class Order {
 		this.shippingAddress = shippingAddress;
 	}
 
-	public BigDecimal getTotalInDollars() {
+	public Double getTotalInDollars() {
 		return totalInDollars;
 	}
 
-	public void setTotalInDollars(BigDecimal totalInDollars) {
+	public void setTotalInDollars(Double totalInDollars) {
 		this.totalInDollars = totalInDollars;
 	}
 
-	public List<OrderItems> getOrderItems() {
-		return orderItems;
+	public Order() {
+		super();
+		this.orderId = 1;
+		this.customerName = "Ishani";
+		this.orderDate = new Date();
+		this.shippingAddress = "Hyderabad";
+		this.totalInDollars = 2000.0;
 	}
 
-	public void setOrderItems(List<OrderItems> orderItems) {
-		this.orderItems = orderItems;
+	@Override
+	public String toString() {
+		return "Order [customerId=" + orderId + ", customerName=" + customerName + ", orderDate=" + orderDate
+				+ ", shippingAddress=" + shippingAddress + ", totalInDollars=" + totalInDollars + "]";
 	}
+
 
 	
 

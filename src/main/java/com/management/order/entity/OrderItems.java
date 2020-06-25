@@ -1,27 +1,20 @@
 package com.management.order.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name="order_items")
 public class OrderItems {
 	
+	@Id
 	private String productCode;
-	private String ProductName;
+	private String productName;
 	private Integer quantity;
-	
-	@Override
-	public String toString() {
-		return "OrderItems [productCode=" + productCode + ", ProductName=" + ProductName + ", quantity=" + quantity
-				+ "]";
-	}
-
-	public OrderItems() {
-		this.productCode = "ABC";
-		ProductName = "Iphone";
-		this.quantity = 2;
-	}
 
 	public String getProductCode() {
 		return productCode;
@@ -32,11 +25,11 @@ public class OrderItems {
 	}
 
 	public String getProductName() {
-		return ProductName;
+		return productName;
 	}
 
 	public void setProductName(String productName) {
-		ProductName = productName;
+		this.productName = productName;
 	}
 
 	public Integer getQuantity() {
@@ -45,6 +38,19 @@ public class OrderItems {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString() {
+		return "OrderItems [productCode=" + productCode + ", productName=" + productName + ", quantity=" + quantity
+				+ "]";
+	}
+
+	public OrderItems() {
+		super();
+		this.productCode = "ABC123";
+		this.productName = "IPHONE-6";
+		this.quantity = 2;
 	}
 
 }
