@@ -68,11 +68,11 @@ public class Order {
 
 	public Order() {
 		super();
-		this.orderId = 1;
-		this.customerName = "Ishani";
-		this.orderDate = new Date();
-		this.shippingAddress = "Hyderabad";
-		this.totalInDollars = 2000.0;
+		this.orderId = 0;
+		this.customerName = "";
+		this.orderDate = null;
+		this.shippingAddress = "";
+		this.totalInDollars = 0.0;
 	}
 
 	@Override

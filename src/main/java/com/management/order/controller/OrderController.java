@@ -20,12 +20,12 @@ public class OrderController {
 
 	@HystrixCommand(fallbackMethod = "getOrderDetailsFallback", groupKey = "getOrderDetails", commandKey = "getOrderDetails")
 	@GetMapping(value = "/getOrders", produces = "application/json")
-	public Order getOrderDetails(@RequestParam("orderId") Integer orderId) {
+	public ResponseEntity<Order> getOrderDetails(@RequestParam("orderId") Integer orderId) {
 		return orderService.getOrderDetails(orderId);
 	}
 
-	public Order getOrderDetailsFallback(Integer orderId) {
-		return null;
+	public ResponseEntity<Order> getOrderDetailsFallback(Integer orderId) {
+		return ResponseEntity.ok(new Order());
 	}
 
 	@HystrixCommand(fallbackMethod = "createOrdersFallback", groupKey = "createOrders", commandKey = "createOrders")

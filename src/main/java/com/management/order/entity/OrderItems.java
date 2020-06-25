@@ -48,9 +48,9 @@ public class OrderItems {
 
 	public OrderItems() {
 		super();
-		this.productCode = "ABC123";
-		this.productName = "IPHONE-6";
-		this.quantity = 2;
+		this.productCode = "";
+		this.productName = "";
+		this.quantity = 0;
 	}
 
 }
