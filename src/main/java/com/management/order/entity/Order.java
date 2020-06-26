@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -44,7 +45,9 @@ public class Order {
 	@Column(name="total")
 	private Double totalInDollars;
 	
+	
 	@OneToMany
+	@Transient
 	private List<OrderItems> orderItems;
 	
 	public String getCustomerName() {
@@ -78,6 +81,15 @@ public class Order {
 	public void setTotalInDollars(Double totalInDollars) {
 		this.totalInDollars = totalInDollars;
 	}
+	
+	public List<OrderItems> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItems> orderItems) {
+		this.orderItems = orderItems;
+	}
+
 
 	public Order() {
 		super();
@@ -92,6 +104,14 @@ public class Order {
 	public String toString() {
 		return "Order [customerId=" + orderId + ", customerName=" + customerName + ", orderDate=" + orderDate
 				+ ", shippingAddress=" + shippingAddress + ", totalInDollars=" + totalInDollars + "]";
+	}
+
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
 
