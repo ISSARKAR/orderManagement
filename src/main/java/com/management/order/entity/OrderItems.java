@@ -1,21 +1,20 @@
 package com.management.order.entity;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
-@Entity
 @Data
-@Table(name="order_items")
 public class OrderItems {
 	
 	@Id
 	private String productCode;
+	
+	@NotNull
+	private Integer OrderId;
 	
 	@NotBlank(message="Product name cannot be bank")
 	private String productName;
@@ -59,6 +58,14 @@ public class OrderItems {
 		this.productCode = "";
 		this.productName = "";
 		this.quantity = 0;
+	}
+
+	public Integer getOrderId() {
+		return OrderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		OrderId = orderId;
 	}
 
 }
